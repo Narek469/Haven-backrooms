@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dw6u8dknq1g8g"]
+
+[ext_resource type="Script" uid="uid://y4t1yyk35lxb" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://vke4pypaoqjx" path="res://Player/the_character_of_an_office_worker.glb" id="2_i3pqv"]
+[ext_resource type="Script" uid="uid://dkxjnpng7i1ap" path="res://Player/walk_anim.gd" id="3_i3pqv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_13qdw"]
+radius = 0.4
+height = 1.8
+
+[node name="Player" type="CharacterBody3D" unique_id=2005227640 node_paths=PackedStringArray("model", "head", "spring_arm")]
+script = ExtResource("1_onrkg")
+model = NodePath("model")
+head = NodePath("head")
+spring_arm = NodePath("head/SpringArm3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1329951988]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_13qdw")
+
+[node name="head" type="Node3D" parent="." unique_id=1735743385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="head" unique_id=146746252]
+
+[node name="Camera3D" type="Camera3D" parent="head/SpringArm3D" unique_id=1739431634]
+
+[node name="model" parent="." unique_id=680736756 instance=ExtResource("2_i3pqv")]
+script = ExtResource("3_i3pqv")

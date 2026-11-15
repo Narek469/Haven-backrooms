@@ -19,11 +19,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_13qdw")
 
 [node name="head" type="Node3D" parent="." unique_id=1735743385]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6578057, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="head" unique_id=146746252]
 
 [node name="Camera3D" type="Camera3D" parent="head/SpringArm3D" unique_id=1739431634]
 
 [node name="model" parent="." unique_id=680736756 instance=ExtResource("2_i3pqv")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 script = ExtResource("3_i3pqv")

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dfg80x8l25lgn"]
+
+[ext_resource type="Script" uid="uid://2oy1mayli4ga" path="res://portal.gd" id="1_ef3v5"]
+[ext_resource type="PackedScene" uid="uid://blv4mru5kf3s3" path="res://portal.glb" id="2_grrij"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(2, 3, 1)
+
+[node name="portal" type="Area3D" unique_id=879469250]
+script = ExtResource("1_ef3v5")
+
+[node name="Visual" parent="." unique_id=1904889474 instance=ExtResource("2_grrij")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=280477614]
+transform = Transform3D(1.9949667, 0, 0, 0, 1.628347, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_xrivr")

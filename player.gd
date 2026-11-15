@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 signal sanity_changed(current: float, maximum: float)
+signal documents_changed(count: int)
 
 @export var speed := 5.0
 @export var accel := 14.0
@@ -17,6 +18,7 @@ signal sanity_changed(current: float, maximum: float)
 @export var spring_arm: SpringArm3D
 
 var sanity := 100.0
+var documents := 0
 var dead := false
 var third_person := false
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -90,6 +92,11 @@ func _physics_process(delta: float) -> void:
 		model.rotation.y = lerp_angle(model.rotation.y, angle, turn_speed * delta)
 
 
+func add_document() -> void:
+	documents += 1
+	documents_changed.emit(documents)
+
+
 func lose_all_sanity() -> void:
 	if dead:
 		return
@@ -107,3 +114,17 @@ func respawn() -> void:
 	velocity = Vector3.ZERO
 	sanity = max_sanity
 	sanity_changed.emit(sanity, max_sanity)
+
+func finish_game() -> void:
+	dead = true
+	velocity = Vector3.ZERO
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	var layer := CanvasLayer.new()
+	var label := Label.new()
+	label.text = "Игра окончена"
+	label.add_theme_font_size_override("font_size", 64)
+	label.set_anchors_preset(Control.PRESET_CENTER)
+	layer.add_child(label)
+	get_tree().root.add_child(layer)
+	await get_tree().create_timer(3.0).timeout
+	get_tree().quit()
